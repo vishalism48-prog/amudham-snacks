@@ -13,7 +13,25 @@
     box-sizing:border-box;
     font-family:Arial, Helvetica, sans-serif;
 }
+.search-box{
+    margin:25px auto 0;
+    max-width:500px;
+}
 
+.search-box input{
+    width:100%;
+    padding:15px 20px;
+    border:2px solid #eadbc5;
+    border-radius:30px;
+    outline:none;
+    font-size:16px;
+    background:white;
+}
+
+.search-box input:focus{
+    border-color:#984716;
+    box-shadow:0 5px 20px rgba(100,50,20,.08);
+}
 html{
     scroll-behavior:smooth;
 }
@@ -433,8 +451,8 @@ footer strong{
 <nav>
 
 <div class="logo">
-    Amudham
-    <span>SNACKS • ANNAI JAYAM</span>
+    அமுதம் ஸ்நாக்ஸ்
+    <span>VIMALA AGENCY.அன்னை ஜெயம்</span>
 </div>
 
 <div class="links">
@@ -461,7 +479,7 @@ footer strong{
 </h1>
 
 <p>
-    Welcome to Amudham Snacks – Annai Jayam.
+    Welcome to Amudham Snacks – .
     Discover crispy, crunchy and traditional snacks
     made to bring a little happiness to every moment.
 </p>
@@ -529,7 +547,14 @@ footer strong{
     <h2>Our Snack Shelf</h2>
     <p>Pick your favourites and add them to your cart.</p>
 </div>
-
+<div class="search-box">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search snacks..."
+        onkeyup="searchProducts()"
+    >
+</div>
 <div class="product-grid">
 
 <div class="product">
@@ -710,7 +735,31 @@ footer strong{
 
 
 <script>
+function searchProducts(){
 
+    let input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let products =
+        document.querySelectorAll(".product");
+
+    products.forEach(function(product){
+
+        let name =
+            product.querySelector("h3")
+            .innerText
+            .toLowerCase();
+
+        if(name.includes(input)){
+            product.style.display = "";
+        }else{
+            product.style.display = "none";
+        }
+
+    });
+}
 let cart = [];
 
 function addToCart(name, price){
