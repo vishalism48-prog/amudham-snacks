@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Amudham Snacks | Traditional Taste</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#fff8ed;
+    color:#3b2415;
+}
+
+/* NAVBAR */
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#7b2d16;
+    padding:15px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 3px 15px rgba(0,0,0,0.2);
+}
+
+.logo{
+    color:#ffd166;
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+nav ul li a:hover{
+    color:#ffd166;
+}
+
+/* HERO */
+.hero{
+    min-height:480px;
+    padding:70px 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:
+    linear-gradient(135deg,#7b2d16,#b94e20);
+    color:white;
+}
+
+.hero-text{
+    max-width:600px;
+}
+
+.hero-text h1{
+    font-size:55px;
+    margin-bottom:15px;
+    color:#ffd166;
+}
+
+.hero-text h2{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.hero-text p{
+    font-size:18px;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+.btn{
+    display:inline-block;
+    background:#ffd166;
+    color:#5b2111;
+    padding:13px 25px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    margin-right:10px;
+}
+
+.btn:hover{
+    background:white;
+}
+
+/* DASHBOARD */
+.dashboard{
+    margin:-45px auto 40px;
+    width:88%;
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.stat{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,0.12);
+}
+
+.stat h2{
+    color:#b94e20;
+    font-size:30px;
+}
+
+.stat p{
+    margin-top:8px;
+    color:#777;
+}
+
+/* SECTION */
+section{
+    padding:60px 7%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    font-size:35px;
+    color:#7b2d16;
+}
+
+.section-title p{
+    color:#777;
+    margin-top:8px;
+}
+
+/* SEARCH */
+.search-box{
+    max-width:650px;
+    margin:0 auto 35px;
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+    padding:17px 22px;
+    border:2px solid #e6c9a8;
+    border-radius:35px;
+    font-size:16px;
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:#b94e20;
+}
+
+/* PRODUCTS */
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+}
+
+.product{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 7px 20px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.product:hover{
+    transform:translateY(-7px);
+}
+
+.product-img{
+    height:190px;
+    background:linear-gradient(135deg,#ffe0a3,#fff1cf);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:75px;
+}
+
+.product-content{
+    padding:20px;
+}
+
+.product-content h3{
+    color:#7b2d16;
+    margin-bottom:8px;
+}
+
+.product-content p{
+    color:#777;
+    font-size:14px;
+    min-height:40px;
+}
+
+.price{
+    color:#b94e20;
+    font-size:21px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.order-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#7b2d16;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.order-btn:hover{
+    background:#b94e20;
+}
+
+/* ABOUT */
+.about{
+    background:#fff0d6;
+}
+
+.about-box{
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+    line-height:1.8;
+}
+
+/* CONTACT */
+.contact{
+    text-align:center;
+}
+
+.contact-card{
+    max-width:600px;
+    margin:auto;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+}
+
+.phone{
+    display:inline-block;
+    margin:20px 0;
+    font-size:25px;
+    font-weight:bold;
+    color:#7b2d16;
+}
+
+/* FOOTER */
+footer{
+    background:#4a1c0d;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding:60px 5%;
+    }
+
+    .hero-text h1{
+        font-size:42px;
+    }
+
+    .dashboard{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    nav ul{
+        display:none;
+    }
+}
+
+@media(max-width:600px){
+
+    .dashboard{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .hero-text h1{
+        font-size:38px;
+    }
+
+    .hero-text h2{
+        font-size:22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+🍌 Amudham Snacks
+</div>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#products">Products</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="hero-text">
+
+<h1>Amudham Snacks</h1>
+
+<h2>Traditional Taste. Homemade Happiness.</h2>
+
+<p>
+Freshly prepared traditional snacks made with care,
+quality ingredients and the authentic taste you love.
+</p>
+
+<a href="#products" class="btn">Explore Snacks</a>
+
+<a href="#contact" class="btn">Contact Us</a>
+
+</div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<div class="dashboard">
+
+<div class="stat">
+<h2>4+</h2>
+<p>Snack Categories</p>
+</div>
+
+<div class="stat">
+<h2>100%</h2>
+<p>Traditional Taste</p>
+</div>
+
+<div class="stat">
+<h2>Fresh</h2>
+<p>Quality Products</p>
+</div>
+
+<div class="stat">
+<h2>📱</h2>
+<p>Easy WhatsApp Order</p>
+</div>
+
+</div>
+
+
+<!-- PRODUCTS -->
+
+<section id="products">
+
+<div class="section-title">
+
+<h2>Our Snacks</h2>
+
+<p>Search and explore your favourite traditional snacks</p>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+<input
+type="text"
+id="searchInput"
+placeholder="🔍 Search snacks... e.g. banana chips, halwa"
+onkeyup="searchProducts()"
+>
+
+</div>
+
+
+<div class="products" id="productList">
+
+
+<!-- BANANA CHIPS -->
+
+<div class="product" data-name="banana chips banana">
+
+<div class="product-img">
+🍌
+</div>
+
+<div class="product-content">
+
+<h3>Banana Chips</h3>
+
+<p>Crispy and delicious traditional banana chips.</p>
+
+<div class="price">₹120 / 250g</div>
+
+<button
+class="order-btn"
+onclick="orderProduct('Banana Chips')">
+Order on WhatsApp
+</button>
+
+</div>
+
+</div>
+
+
+<!-- HALWA -->
+
+<div class="product" data-name="halwa tirunelveli halwa">
+
+<div class="product-img">
+🍯
+</div>
+
+<div class="product-content">
+
+<h3>Traditional Halwa</h3>
+
+<p>Soft, sweet and rich traditional halwa.</p>
+
+<div class="price">₹150 / 250g</div>
+
+<button
+class="order-btn"
+onclick="orderProduct('Traditional Halwa')">
+Order on WhatsApp
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PEANUT CANDY -->
+
+<div class="product" data-name="peanut candy kadalai mittai">
+
+<div class="product-img">
+🥜
+</div>
+
+<div class="product-content">
+
+<h3>Peanut Candy</h3>
+
+<p>Crunchy peanut candy with authentic traditional taste.</p>
+
+<div class="price">₹100 / 250g</div>
+
+<button
+class="order-btn"
+onclick="orderProduct('Peanut Candy')">
+Order on WhatsApp
+</button>
+
+</div>
+
+</div>
+
+
+<!-- MIXTURE -->
+
+<div class="product" data-name="mixture snacks kara mixture">
+
+<div class="product-img">
+🍘
+</div>
+
+<div class="product-content">
+
+<h3>Special Mixture</h3>
+
+<p>Crispy and spicy mixture for every occasion.</p>
+
+<div class="price">₹100 / 250g</div>
+
+<button
+class="order-btn"
+onclick="orderProduct('Special Mixture')">
+Order on WhatsApp
+</button>
+
+</div>
+
+</div>
+
+
+<!-- MURUKKU -->
+
+<div class="product" data-name="murukku chakli">
+
+<div class="product-img">
+🥨
+</div>
+
+<div class="product-content">
+
+<h3>Murukku</h3>
+
+<p>Traditional crispy murukku with homemade flavour.</p>
+
+<div class="price">₹120 / 250g</div>
+
+<button
+class="order-btn"
+onclick="orderProduct('Murukku')">
+Order on WhatsApp
+</button>
+
+</div>
+
+</div>
+
+
+<!-- THATTAI -->
+
+<div class="product" data-name="thattai traditional snack">
+
+<div class="product-img">
+🫓
+</div>
+
+<div class="product-content">
+
+<h3>Thattai</h3>
+
+<p>Crispy traditional thattai made with care.</p>
+
+<div class="price">₹120 / 250g</div>
+
+<button
+class="order-btn"
+onclick="orderProduct('Thattai')">
+Order on WhatsApp
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SWEET -->
+
+<div class="product" data-name="sweet traditional sweets">
+
+<div class="product-img">
+🍬
+</div>
+
+<div class="product-content">
+
+<h3>Traditional Sweets</h3>
+
+<p>Delicious sweets made for every celebration.</p>
+
+<div class="price">₹150 / 250g</div>
+
+<button
+class="order-btn"
+onclick="orderProduct('Traditional Sweets')">
+Order on WhatsApp
+</button>
+
+</div>
+
+</div>
+
+
+<!-- OTHER -->
+
+<div class="product" data-name="other snacks special">
+
+<div class="product-img">
+🍱
+</div>
+
+<div class="product-content">
+
+<h3>Other Snacks</h3>
+
+<p>More traditional snacks coming soon.</p>
+
+<div class="price">Contact Us</div>
+
+<button
+class="order-btn"
+onclick="orderProduct('Other Snacks')">
+Enquire Now
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+<div class="section-title">
+
+<h2>About Amudham Snacks</h2>
+
+</div>
+
+<div class="about-box">
+
+<p>
+At <b>Amudham Snacks</b>, we bring the authentic taste of
+traditional snacks to your doorstep.
+
+From crispy banana chips and delicious halwa to crunchy
+peanut candy and other special snacks, our goal is simple —
+<strong>good taste, good quality and happy customers.</strong>
+</p>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<div class="section-title">
+
+<h2>Contact Us</h2>
+
+<p>Order your favourite snacks easily through WhatsApp</p>
+
+</div>
+
+<div class="contact-card">
+
+<h3>📱 WhatsApp Orders</h3>
+
+<a
+class="phone"
+href="https://wa.me/919942608020"
+target="_blank">
++91 99426 08020
+</a>
+
+<br>
+
+<a
+class="btn"
+href="https://wa.me/919942608020?text=Hi%20Amudham%20Snacks,%20I%20would%20like%20to%20place%20an%20order."
+target="_blank">
+💬 Chat on WhatsApp
+</a>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>© 2026 Amudham Snacks. All Rights Reserved.</p>
+
+<p>Made with ❤️ for traditional taste.</p>
+
+</footer>
+
+
+<script>
+
+/* SEARCH FUNCTION */
+
+function searchProducts(){
+
+    let input =
+    document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase();
+
+    let products =
+    document.querySelectorAll(".product");
+
+    products.forEach(function(product){
+
+        let name =
+        product
+        .getAttribute("data-name")
+        .toLowerCase();
+
+        if(name.includes(input)){
+            product.style.display = "block";
+        }
+        else{
+            product.style.display = "none";
+        }
+
+    });
+
+}
+
+
+/* WHATSAPP ORDER */
+
+function orderProduct(productName){
+
+    let phone = "919942608020";
+
+    let message =
+    "Hi Amudham Snacks,%0A%0A" +
+    "I would like to order: " +
+    productName +
+    "%0A%0APlease share the available options and price.";
+
+    let url =
+    "https://wa.me/" +
+    phone +
+    "?text=" +
+    message;
+
+    window.open(url,"_blank");
+
+}
+
+</script>
+
+</body>
+</html>
