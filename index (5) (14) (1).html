@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Amudham Snacks – Annai Jayam</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.search-box{
+    margin:25px auto 0;
+    max-width:500px;
+}
+
+.search-box input{
+    width:100%;
+    padding:15px 20px;
+    border:2px solid #eadbc5;
+    border-radius:30px;
+    outline:none;
+    font-size:16px;
+    background:white;
+}
+
+.search-box input:focus{
+    border-color:#984716;
+    box-shadow:0 5px 20px rgba(100,50,20,.08);
+}
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#fffaf2;
+    color:#2d2118;
+}
+
+/* NAVBAR */
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 7%;
+    background:#fffaf2;
+    border-bottom:1px solid #eadbc8;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+    color:#8b4513;
+}
+
+.logo span{
+    display:block;
+    font-size:11px;
+    letter-spacing:2px;
+    color:#9c7a5a;
+}
+
+nav a{
+    text-decoration:none;
+    color:#3b2a20;
+    margin-left:25px;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:#c46b25;
+}
+
+/* HERO */
+.hero{
+    min-height:82vh;
+    display:flex;
+    align-items:center;
+    padding:60px 7%;
+    background:
+    radial-gradient(circle at 80% 20%,#ffe1a8 0,transparent 25%),
+    linear-gradient(135deg,#fff7e8,#f8ead5);
+}
+
+.hero-text{
+    width:55%;
+}
+
+.small-title{
+    color:#c46b25;
+    font-weight:bold;
+    letter-spacing:2px;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:clamp(45px,7vw,82px);
+    line-height:.95;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#b45720;
+}
+
+.hero p{
+    max-width:600px;
+    font-size:18px;
+    line-height:1.7;
+    color:#705d4b;
+}
+
+.hero-buttons{
+    margin-top:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 25px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    margin-right:10px;
+    cursor:pointer;
+    border:none;
+}
+
+.primary{
+    background:#9f4d1b;
+    color:white;
+}
+
+.secondary{
+    border:1px solid #c79a70;
+    color:#7c421e;
+    background:transparent;
+}
+
+.hero-art{
+    width:45%;
+    display:flex;
+    justify-content:center;
+}
+
+.snack-circle{
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:#d99a52;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:130px;
+    box-shadow:20px 25px 50px rgba(80,40,10,.18);
+}
+
+/* SECTION */
+section{
+    padding:80px 7%;
+}
+
+.section-head{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-head h2{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.section-head p{
+    color:#806c58;
+}
+
+/* TIME CARDS */
+.time-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.time-card{
+    padding:30px;
+    border-radius:25px;
+    background:white;
+    border:1px solid #eadbc8;
+    transition:.3s;
+}
+
+.time-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(80,40,10,.1);
+}
+
+.time-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.time-card h3{
+    margin-bottom:10px;
+}
+
+.time-card p{
+    color:#786653;
+    line-height:1.6;
+}
+
+/* PRODUCTS */
+.products{
+    background:#f8efe3;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+}
+
+.product{
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid #eadbc8;
+    transition:.3s;
+}
+
+.product:hover{
+    transform:translateY(-7px);
+}
+
+.product-img{
+    height:190px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:85px;
+    background:#fff1d8;
+}
+
+.product-info{
+    padding:20px;
+}
+
+.product-info h3{
+    margin-bottom:7px;
+}
+
+.product-info p{
+    color:#826d58;
+    font-size:14px;
+    min-height:42px;
+}
+
+.price{
+    font-size:20px;
+    font-weight:bold;
+    color:#9f4d1b;
+    margin:15px 0;
+}
+
+.add-btn{
+    width:100%;
+    padding:11px;
+    border:0;
+    border-radius:12px;
+    background:#9f4d1b;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.add-btn:hover{
+    background:#743612;
+}
+
+/* ABOUT */
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.about-box{
+    padding:40px;
+    border-radius:30px;
+    background:#f2dfc5;
+    font-size:70px;
+    text-align:center;
+}
+
+.about-text h2{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.about-text p{
+    line-height:1.8;
+    color:#705d4b;
+}
+
+/* CART */
+.cart-section{
+    background:#2f2118;
+    color:white;
+}
+
+.cart{
+    max-width:800px;
+    margin:auto;
+}
+
+.cart h2{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:35px;
+}
+
+#cartItems{
+    background:#412f23;
+    border-radius:20px;
+    padding:20px;
+    min-height:70px;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 0;
+    border-bottom:1px solid #614b3a;
+}
+
+.remove{
+    background:#b94d3c;
+    border:0;
+    color:white;
+    padding:7px 10px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.total{
+    text-align:right;
+    font-size:23px;
+    margin:25px 0;
+}
+
+.whatsapp{
+    width:100%;
+    padding:15px;
+    border:0;
+    border-radius:15px;
+    background:#25d366;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:30px;
+    background:#211710;
+    color:#cbb9a7;
+}
+
+footer strong{
+    color:white;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+    nav{
+        padding:15px 5%;
+    }
+
+    nav .links{
+        display:none;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding-top:70px;
+    }
+
+    .hero-text{
+        width:100%;
+    }
+
+    .hero-art{
+        width:100%;
+        margin-top:50px;
+    }
+
+    .snack-circle{
+        width:250px;
+        height:250px;
+        font-size:90px;
+    }
+
+    .time-grid{
+        grid-template-columns:1fr;
+    }
+
+    .product-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .about{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:550px){
+
+    section{
+        padding:60px 5%;
+    }
+
+    .hero h1{
+        font-size:50px;
+    }
+
+    .product-grid{
+        grid-template-columns:1fr;
+    }
+
+    .about-text h2{
+        font-size:32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+
+<div class="logo">
+    அமுதம் ஸ்நாக்ஸ்
+    <span>VIMALA AGENCY.அன்னை ஜெயம்</span>
+</div>
+
+<div class="links">
+    <a href="#home">Home</a>
+    <a href="#times">Snack Time</a>
+    <a href="#products">Menu</a>
+    <a href="#about">About</a>
+    <a href="#cart">Cart 🛒</a>
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+<div class="hero-text">
+
+<div class="small-title">TRADITIONAL TASTE • MODERN LOVE</div>
+
+<h1>
+    Every time<br>
+    deserves a <span>snack.</span>
+</h1>
+
+<p>
+    Welcome to Amudham Snacks – .
+    Discover crispy, crunchy and traditional snacks
+    made to bring a little happiness to every moment.
+</p>
+
+<div class="hero-buttons">
+    <a href="#products" class="btn primary">Explore Snacks</a>
+    <a href="#times" class="btn secondary">Find Your Time</a>
+</div>
+
+</div>
+
+<div class="hero-art">
+    <div class="snack-circle">🍘</div>
+</div>
+
+</section>
+
+
+<!-- SNACK TIMES -->
+<section id="times">
+
+<div class="section-head">
+    <h2>What's your snack time?</h2>
+    <p>Different moments. Different cravings.</p>
+</div>
+
+<div class="time-grid">
+
+<div class="time-card">
+    <div class="time-icon">🌅</div>
+    <h3>Morning Crunch</h3>
+    <p>
+        Start your day with light and crispy traditional
+        snacks along with your morning tea.
+    </p>
+</div>
+
+<div class="time-card">
+    <div class="time-icon">☕</div>
+    <h3>Evening Tea Time</h3>
+    <p>
+        The perfect companion for your evening tea,
+        coffee and conversations.
+    </p>
+</div>
+
+<div class="time-card">
+    <div class="time-icon">🌙</div>
+    <h3>Night Cravings</h3>
+    <p>
+        A little crunchy happiness for those late-night
+        movie and study moments.
+    </p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+
+<div class="section-head">
+    <h2>Our Snack Shelf</h2>
+    <p>Pick your favourites and add them to your cart.</p>
+</div>
+<div class="search-box">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search snacks..."
+        onkeyup="searchProducts()"
+    >
+</div>
+<div class="product-grid">
+
+<div class="product">
+    <div class="product-img">🍘</div>
+    <div class="product-info">
+        <h3>Murukku</h3>
+        <p>Classic crispy traditional murukku.</p>
+        <div class="price">₹120</div>
+        <button class="add-btn" onclick="addToCart('Murukku',120)">
+            Add to Cart
+        </button>
+    </div>
+</div>
+
+<div class="product">
+    <div class="product-img">🥨</div>
+    <div class="product-info">
+        <h3>Mixture</h3>
+        <p>A crunchy blend for every tea break.</p>
+        <div class="price">₹100</div>
+        <button class="add-btn" onclick="addToCart('Mixture',100)">
+            Add to Cart
+        </button>
+    </div>
+</div>
+
+<div class="product">
+    <div class="product-img">🍪</div>
+    <div class="product-info">
+        <h3>Thattai</h3>
+        <p>Thin, crispy and traditionally delicious.</p>
+        <div class="price">₹130</div>
+        <button class="add-btn" onclick="addToCart('Thattai',130)">
+            Add to Cart
+        </button>
+    </div>
+</div>
+
+<div class="product">
+    <div class="product-img">🥜</div>
+    <div class="product-info">
+        <h3>Spicy Groundnut</h3>
+        <p>Crunchy peanuts with a spicy twist.</p>
+        <div class="price">₹90</div>
+        <button class="add-btn" onclick="addToCart('Spicy Groundnut',90)">
+            Add to Cart
+        </button>
+    </div>
+</div>
+
+<div class="product">
+    <div class="product-img">🍩</div>
+    <div class="product-info">
+        <h3>Seedai</h3>
+        <p>Small bites with a big traditional taste.</p>
+        <div class="price">₹110</div>
+        <button class="add-btn" onclick="addToCart('Seedai',110)">
+            Add to Cart
+        </button>
+    </div>
+</div>
+
+<div class="product">
+    <div class="product-img">🌶️</div>
+    <div class="product-info">
+        <h3>Spicy Kara Boondi</h3>
+        <p>Perfect crunchy snack for spice lovers.</p>
+        <div class="price">₹100</div>
+        <button class="add-btn" onclick="addToCart('Kara Boondi',100)">
+            Add to Cart
+        </button>
+    </div>
+</div>
+
+<div class="product">
+    <div class="product-img">🍌</div>
+    <div class="product-info">
+        <h3>Banana Chips</h3>
+        <p>Thin, crispy and naturally delicious.</p>
+        <div class="price">₹140</div>
+        <button class="add-btn" onclick="addToCart('Banana Chips',140)">
+            Add to Cart
+        </button>
+    </div>
+</div>
+
+<div class="product">
+    <div class="product-img">🥥</div>
+    <div class="product-info">
+        <h3>Coconut Cookies</h3>
+        <p>Sweet, crunchy and perfect with tea.</p>
+        <div class="price">₹150</div>
+        <button class="add-btn" onclick="addToCart('Coconut Cookies',150)">
+            Add to Cart
+        </button>
+    </div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+
+<div class="about">
+
+<div class="about-box">
+    🧺🍘🥜
+</div>
+
+<div class="about-text">
+
+<h2>A little box of happiness.</h2>
+
+<p>
+    At <strong>Amudham Snacks – Annai Jayam</strong>,
+    we believe snacks are more than just food.
+    They are part of tea-time conversations,
+    family gatherings, celebrations and everyday moments.
+</p>
+
+<br>
+
+<p>
+    Our goal is simple — bring traditional snack flavours
+    to your doorstep with love and care.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CART -->
+<section class="cart-section" id="cart">
+
+<div class="cart">
+
+<h2>Your Snack Basket 🛒</h2>
+
+<div id="cartItems">
+    Your cart is empty.
+</div>
+
+<div class="total">
+    Total: ₹<span id="total">0</span>
+</div>
+
+<button class="whatsapp" onclick="orderWhatsApp()">
+    Order on WhatsApp
+</button>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+<p>
+    <strong>அமுதம் ஸ்நாக்ஸ்</strong>
+</p>
+
+<p>
+    அன்னை ஜெயம்
+</p>
+
+<br>
+
+<p>© 2026 அமுதம் ஸ்நாக்ஸ் </p>
+
+</footer>
+
+
+<script>
+function searchProducts(){
+
+    let input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let products =
+        document.querySelectorAll(".product");
+
+    products.forEach(function(product){
+
+        let name =
+            product.querySelector("h3")
+            .innerText
+            .toLowerCase();
+
+        if(name.includes(input)){
+            product.style.display = "";
+        }else{
+            product.style.display = "none";
+        }
+
+    });
+}
+let cart = [];
+
+function addToCart(name, price){
+
+    let existing = cart.find(item => item.name === name);
+
+    if(existing){
+        existing.quantity++;
+    }else{
+        cart.push({
+            name:name,
+            price:price,
+            quantity:1
+        });
+    }
+
+    updateCart();
+
+    alert(name + " added to cart!");
+}
+
+
+function removeItem(index){
+
+    cart.splice(index,1);
+
+    updateCart();
+}
+
+
+function updateCart(){
+
+    let container = document.getElementById("cartItems");
+
+    let total = 0;
+
+    if(cart.length === 0){
+
+        container.innerHTML = "Your cart is empty.";
+
+    }else{
+
+        container.innerHTML = "";
+
+        cart.forEach((item,index)=>{
+
+            let itemTotal = item.price * item.quantity;
+
+            total += itemTotal;
+
+            container.innerHTML += `
+                <div class="cart-item">
+
+                    <div>
+                        <strong>${item.name}</strong><br>
+                        ₹${item.price} × ${item.quantity}
+                    </div>
+
+                    <div>
+                        ₹${itemTotal}
+                        <button class="remove"
+                        onclick="removeItem(${index})">
+                        Remove
+                        </button>
+                    </div>
+
+                </div>
+            `;
+
+        });
+
+    }
+
+    document.getElementById("total").innerText = total;
+}
+
+
+function orderWhatsApp(){
+
+    if(cart.length === 0){
+
+        alert("Please add some snacks to your cart first!");
+
+        return;
+    }
+
+    let message = "Hello Amudham Snacks!%0A%0A";
+    message += "I would like to order:%0A%0A";
+
+    let total = 0;
+
+    cart.forEach(item => {
+
+        let itemTotal = item.price * item.quantity;
+
+        total += itemTotal;
+
+        message +=
+        "• " + item.name +
+        " × " + item.quantity +
+        " = ₹" + itemTotal +
+        "%0A";
+
+    });
+
+    message += "%0ATotal: ₹" + total;
+
+    message += "%0A%0AName: ";
+    message += "%0ADelivery Address: ";
+
+    /*
+       IMPORTANT:
+       Replace the number below with your
+       WhatsApp business number.
+
+       Example:
+       919876543210
+    */
+
+    let phone = "9942608020";
+
+    window.open(
+        "https://wa.me/" + phone + "?text=" + message,
+        "_blank"
+    );
+}
+
+</script>
+
+</body>
+</html>
