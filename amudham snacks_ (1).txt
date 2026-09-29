@@ -1,0 +1,117 @@
+(function () {
+  "use strict";
+
+  var WHATSAPP_NUMBER = "919942608020";
+
+  function whatsappLink(message) {
+    return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+  }
+
+  // Edit prices here: replace "₹XX" with your real price, e.g. "₹120 / 250 g".
+  var products = [
+    { name: "Banana Chips", emoji: "🍌", image: "images/banana-chips.jpg",
+      desc: "Crispy, golden banana chips fried fresh.", price: "₹XX", keywords: [] },
+    { name: "Halwa", emoji: "🍮", image: "images/halwa.jpg",
+      desc: "Soft, sweet halwa in the traditional style.", price: "₹XX", keywords: [] },
+    { name: "Kadalai", emoji: "🥜", image: "images/kadalai.jpg",
+      desc: "Crunchy, tasty kadalai snack.", price: "₹XX", keywords: [] },
+    { name: "Peanut Candy", emoji: "🍬", image: "images/peanut-candy.jpg",
+      desc: "Crunchy peanut candy with a sweet bite.", price: "₹XX", keywords: [] },
+    { name: "Macroon", emoji: "🍪", image: "images/macroon.jpg",
+      desc: "Sweet, chewy macroon treats.", price: "₹XX", keywords: ["macaroon"] }
+  ];
+
+  // Mobile menu, footer year, general WhatsApp links
+  var navToggle = document.getElementById("navToggle");
+  var nav = document.getElementById("nav");
+  navToggle.addEventListener("click", function () {
+    var open = nav.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", String(open));
+  });
+  nav.addEventListener("click", function (e) {
+    if (e.target.tagName === "A") {
+      nav.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+  document.getElementById("year").textContent = new Date().getFullYear();
+  var general = whatsappLink("Hello Amudham Snacks, I would like to know more about your snacks and place an order.");
+  document.querySelectorAll(".wa-general").forEach(function (a) { a.href = general; });
+
+  // Product search
+  var grid = document.getElementById("snackGrid");
+  var input = document.getElementById("snackSearch");
+  var noResults = document.getElementById("snackNoResults");
+  var clearBtn = document.getElementById("snackClearBtn");
+  var status = document.getElementById("snackStatus");
+
+  function normalize(text) {
+    return String(text).toLowerCase().replace(/\s+/g, " ").trim();
+  }
+
+  function createCard(p, index) {
+    var card = document.createElement("article");
+    card.className = "snack-card";
+    card.style.animationDelay = index * 60 + "ms";
+
+    var imgBox = document.createElement("div");
+    imgBox.className = "snack-img";
+    imgBox.textContent = p.emoji;
+    var img = document.createElement("img");
+    img.src = p.image;
+    img.alt = p.name + " by Amudham Snacks";
+    img.loading = "lazy";
+    img.addEventListener("error", function () { img.remove(); });
+    imgBox.appendChild(img);
+
+    var body = document.createElement("div");
+    body.className = "snack-body";
+    var h3 = document.createElement("h3");
+    h3.textContent = p.name;
+    var desc = document.createElement("p");
+    desc.textContent = p.desc;
+    var price = document.createElement("p");
+    price.className = "snack-price";
+    price.textContent = p.price;
+    var order = document.createElement("a");
+    order.className = "btn btn-wa";
+    order.href = whatsappLink("Hello Amudham Snacks, I would like to order " + p.name + ".");
+    order.target = "_blank";
+    order.rel = "noopener noreferrer";
+    order.textContent = "Order on WhatsApp";
+
+    body.append(h3, desc, price, order);
+    card.append(imgBox, body);
+    return card;
+  }
+
+  function render(list) {
+    grid.innerHTML = "";
+    list.forEach(function (p, i) { grid.appendChild(createCard(p, i)); });
+    var empty = list.length === 0;
+    grid.hidden = empty;
+    noResults.hidden = !empty;
+    status.textContent = empty ? "No snacks found" : list.length + (list.length === 1 ? " snack shown" : " snacks shown");
+  }
+
+  function filter() {
+    var q = normalize(input.value);
+    if (q === "") { render(products); return; }
+    var words = q.split(" ");
+    render(products.filter(function (p) {
+      var haystack = normalize(p.name + " " + p.keywords.join(" "));
+      return words.every(function (w) { return haystack.indexOf(w) !== -1; });
+    }));
+  }
+
+  function clearSearch() {
+    input.value = "";
+    render(products);
+    input.focus();
+  }
+
+  input.addEventListener("input", filter);
+  input.addEventListener("keydown", function (e) { if (e.key === "Escape") clearSearch(); });
+  clearBtn.addEventListener("click", clearSearch);
+  render(products);
+})();
